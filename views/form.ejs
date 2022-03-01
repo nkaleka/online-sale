@@ -1,0 +1,279 @@
+<%- include('layouts/header'); -%>
+<body>
+  <%- include('layouts/nav'); -%>
+  <h1>Narinder's Store</h1>
+  <div id="receipt"></div>
+  <form name="NarinderStoreSaleForm" action="" method="Post" >
+    <p class="input"><label for="name">Name: </label>
+      <input type="text" id="name" name="name" placeholder="FirstName LastName" />
+    </p>
+
+    <p class="input"><label for="emailAddress">Email address:</label>
+      <input type="text" id="emailAddress" name="emailAddress" placeholder="name@example.com" />
+    </p>
+
+    <p class="input"><label for="phoneNumber">Phone number:</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" placeholder="7807005432" />
+    </p>
+
+    <p class="input"><label for="address">Address:</label>
+      <input type="text" id="address" name="address" placeholder="100 Abc street" />
+    </p>
+
+    <p class="input"><label for="city">City:</label>
+      <input type="text" id="city" name="city" placeholder="Toronto" />
+    </p>
+
+    <p class="input"><label for="postcode">Postcode:</label>
+      <input type="text" id="postcode" name="postcode" placeholder="1P3 2W4" />
+    </p>
+
+    <p class="input"><label for="province">Province:</label>
+      <select name="province" id="province" name="province">
+        <option value="">Select an option</option>
+        <option value="AB">Alberta</option>
+        <option value="BC">British Columbia</option>
+        <option value="MB">Manitoba</option>
+        <option value="NB">New Brunswick</option>
+        <option value="NL">New Foundland and Labrador</option>
+        <option value="NT">North West Territories</option>
+        <option value="NS">Nova Scotia</option>
+        <option value="NU">Nunavut</option>
+        <option value="ON">Ontario</option>
+        <option value="PE">Prince Edward Island</option>
+        <option value="QC">Quebec</option>
+        <option value="SK">Sasketchawan</option>
+        <option value="YT">Yukon</option>
+      </select>
+    </p>
+
+    <p class="input"><Label for="deliverytime">Delivery Time</Label>
+      <select name="deliverytime" id="deliverytime">
+        <option value="1">1 Days</option>
+        <option value="2">2 Days</option>
+        <option value="3">3 Days</option>
+        <option value="4">4 Days</option>
+        <option value="5">5 Days</option>
+      </select>
+    </p>
+
+    <div class="container">
+      <div class="item">
+        <span class="image"><img src="images/chair.jpg" alt="chair" /></span>
+        <br />
+        <span class="name">Chair</span>
+        <br />
+        <span class="price">$5</span>
+        <br />
+        <label for="quantityChairInput">Enter Quantity</label>
+        <br />
+        <input type="text" id="quantityChairInput" name="quantityChairInput" placeholder="10" />
+      </div>
+      <div class="item">
+        <span class="image"><img src="images/table.jpeg" alt="table" /></span>
+        <br />
+        <span class="name">Table</span>
+        <br />
+        <span class="price">$4</span>
+        <br />
+        <label for="quantityTableInput">Enter Quantity</label>
+        <br />
+        <input type="text" id="quantityTableInput" name="quantityTableInput" placeholder="10" />
+      </div>
+      <div class="item">
+        <span class="image"><img src="images/vase.jpeg" alt="vase" /></span>
+        <br />
+        <span class="name">Vase</span>
+        <br />
+        <span class="price">$2</span>
+        <br />
+        <label for="quantityVaseInput">Enter Quantity</label>
+        <br />
+        <input type="text" id="quantityVaseInput" name="quantityVaseInput" placeholder="10" />
+      </div>
+      <div class="item">
+        <span class="image"><img src="images/lamp.jpeg" alt="lamp" /></span>
+        <br />
+        <span class="name">Lamp</span>
+        <br />
+        <span class="price">$1</span>
+        <br />
+        <label for="quantityLampInput">Enter Quantity</label>
+        <br />
+        <input type="text" id="quantityLampInput" name="quantityLampInput" placeholder="10" />
+      </div>
+      <div class="item">
+        <span class="image"><img src="images/flowers.jpeg" alt="flowers" /></span>
+        <br />
+        <span class="name">Flowers</span>
+        <br />
+        <span class="price">$3</span>
+        <br />
+        <label for="quantityFlowersInput">Enter Quantity</label>
+        <br />
+        <input type="text" id="quantityFlowersInput" name="quantityFlowersInput" placeholder="10" />
+      </div>
+
+      <p class="input">
+        <input type="submit" value="Checkout"  class="button">
+        <input type="reset" value="Clear" class="button">
+      </p>
+  </form>
+    <%
+      if (typeof(errors) != 'undefined')
+      {
+    %>
+  <div class="receipt">
+    <p>There are following errors in your submission, please check them: </p>
+    <ul>
+      <%
+        for (let error of errors)
+        {
+      %>
+      <li><%= error.msg %></li>
+      <%
+        }
+      %>
+    </ul>
+    </div>
+    <%
+      }
+    %>
+    <%
+      if (typeof(total) != 'undefined')
+      {
+    %>
+    <div class="receipt">
+    <h3>Your Receipt:</h3>
+    <table>
+      <tr>
+        <th>Name: </th>
+        <td> <%= name %> </td>
+      </tr>
+      <tr>
+        <th>Email Address: </th>
+        <td> <%= emailAddress %> </td>
+      </tr>
+      <tr>
+        <th>Phone: </th>
+        <td> <%= phoneNumber %> </td>
+      </tr>
+      <tr>
+        <th>Address: </th>
+        <td> <%= address %> </td>
+      </tr>
+      <tr>
+        <th>City: </th>
+        <td> <%= city %> </td>
+      </tr>
+      <tr>
+        <th>Postcode: </th>
+        <td> <%= postcode %> </td>
+      </tr>
+      <tr>
+        <th>Province: </th>
+        <td> <%= province %> </td>
+      </tr>
+      <% if (quantityChairInput > 0) {
+        %>
+        <tr>
+        <th>Quantity of Chairs: </th>
+        <td> <%= quantityChairInput %> </td>
+      </tr>
+        <% } %>
+
+        <% if (quantityChairInput > 0) {
+        %>
+        <tr>
+        <th>Price of Chairs: </th>
+        <td> $<%= priceChair.toFixed(2) %> </td>
+      </tr>
+        <% } %>
+
+        <% if (quantityTableInput > 0) {
+        %>
+        <tr>
+        <th>Quantity of Tables: </th>
+        <td> <%= quantityTableInput %> </td>
+      </tr>
+        <% } %>
+
+        <% if (quantityTableInput > 0) {
+        %>
+        <tr>
+        <th>Price of Tabless: </th>
+        <td> $<%= priceTable.toFixed(2) %> </td>
+      </tr>
+        <% } %>
+
+        <% if (quantityVaseInput > 0) {
+        %>
+        <tr>
+        <th>Quantity of Vases: </th>
+        <td> <%= quantityVaseInput %> </td>
+      </tr>
+        <% } %>
+
+        <% if (quantityVaseInput > 0) {
+        %>
+        <tr>
+        <th>Price of Vases: </th>
+        <td> $<%= priceVase.toFixed(2) %> </td>
+      </tr>
+        <% } %>
+
+        <% if (quantityFlowersInput > 0) {
+        %>
+        <tr>
+        <th>Quantity of Flowers: </th>
+        <td> <%= quantityFlowersInput %> </td>
+      </tr>
+        <% } %>
+
+        <% if (quantityFlowersInput > 0) {
+        %>
+        <tr>
+        <th>Price of Flowers: </th>
+        <td> $<%= priceFlowers.toFixed(2) %> </td>
+      </tr>
+        <% } %>
+
+        <% if (quantityLampInput > 0) {
+        %>
+        <tr>
+        <th>Quantity of Lamps: </th>
+        <td> <%= quantityLampInput %> </td>
+      </tr>
+        <% } %>
+
+        <% if (quantityLampInput > 0) {
+        %>
+        <tr>
+        <th>Price of Lamps: </th>
+        <td> $<%= priceLamp %> </td>
+      </tr>
+        <% } %>
+
+      <tr>
+        <th>Shipping Charges: </th>
+        <td> $<%= shipping.toFixed(2) %> </td>
+      </tr>
+
+      <tr>
+        <th>Sub Total: </th>
+        <td> $<%= subTotal.toFixed(2) %> </td>
+      </tr>
+      <tr>
+        <th>Tax: </th>
+        <td> $<%= tax.toFixed(2) %> </td>
+      </tr>
+      <tr>
+        <th>Total: </th>
+        <td> $<%= total.toFixed(2) %> </td>
+      </tr>
+    </table>
+  </div>
+    <%
+      }
+    %>
+</body>

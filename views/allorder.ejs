@@ -1,0 +1,49 @@
+<%- include('layouts/header'); -%>
+<body>
+  <%- include('layouts/nav'); -%>
+  <section>
+    <table border="1">
+      <thead>
+        <th>Name</th>
+        <th>EmailAddress</th>
+        <th>PhoneNumber</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Postcode</th>
+        <th>Province</th>
+        <th>QuantityChairInput</th>
+        <th>QuantityTableInput</th>
+        <th>QuantityVaseInput</th>
+        <th>QuantityFlowersInput</th>
+        <th>QuantityLampInput</th>
+        <th>Shipping Charges</th>
+        <th>SubTotal</th>
+        <th>Tax</th>
+        <th>Total</th>
+      </thead>
+      <tbody>
+        <% for(var order of orders) { %>
+        <tr>
+          <td><%= order.name%></td>
+          <td><%=order.emailAddress%></td>
+          <td><%=order.phoneNumber%></td>
+          <td><%=order.address%></td>
+          <td><%=order.city%></td>
+          <td><%=order.postcode%></td>
+          <td><%=order.province%></td>
+          <td><%=order.quantityChairInput%></td>
+          <td><%=order.quantityTableInput%></td>
+          <td><%=order.quantityVaseInput%></td>
+          <td><%=order.quantityFlowersInput%></td>
+          <td><%=order.quantityLampInput%></td>
+          <td>$<%=order.shipping.toFixed(2)%></td>
+          <td>$<%=order.subTotal.toFixed(2) %></td>
+          <td>$<%=order.tax.toFixed(2) %></td>
+          <td>$<%=order.total.toFixed(2) %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </section>
+</body>
+<%- include('layouts/footer'); -%>
